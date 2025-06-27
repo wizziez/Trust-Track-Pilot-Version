@@ -25,5 +25,7 @@ Backend: Firebase (Authentication, Firestore Database, Hosting)
 UI/UX: Simple, intuitive design focusing on usability and responsiveness
 
 Why TrustTrack?
+
+
 As the trust in public transport declines in Bangladesh due to lack of accountability and safety, TrustTrack emerges as a community-driven digital initiative to give commuters a voice and promote better governance.
 
