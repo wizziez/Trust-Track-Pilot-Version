@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustTrack - Local Transport Reviews for a Safer Commute</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2><i class="fas fa-bus"></i> TrustTrack</h2>
+            </div>            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="/pages/reviews.html">Reviews</a>
+                <a href="/pages/emergency.html">Emergency</a>
+                <a href="/pages/team.html">Team</a>
+                <a href="/pages/faq.html">FAQ</a>
+                <a href="#" id="dashboardLink" style="display: none;">Dashboard</a>
+                <a href="/pages/admin.html">Admin</a>
+            </div>
+            <div class="nav-actions">
+                <div class="auth-buttons">
+                    <button class="login-btn" id="loginBtn">Login</button>
+                    <button class="signup-btn" id="signupBtn">Join TrustTrack</button>
+                </div>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Safety First</span>
+                </div>
+                <h1>Transform Your Daily <span class="highlight">Commute Experience</span></h1>
+                <p>Join Bangladesh's largest community of transport reviewers. Share experiences, discover safe routes, and help build a better commuting ecosystem for everyone.</p>
+                <div class="hero-actions">
+                    <a href="/pages/reviews.html" class="cta-button primary">
+                        <i class="fas fa-star"></i>
+                        Start Reviewing
+                    </a>
+                    <a href="/pages/emergency.html" class="cta-button secondary">
+                        <i class="fas fa-shield-alt"></i>
+                        Emergency Help
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card" id="heroReview">
+                    <!-- Review will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>    <!-- Dynamic Reviews Carousel Section -->
+    <section class="reviews-carousel">
+        <div class="container">
+            <h2>Latest Reviews from Our Community</h2>
+            <div class="carousel-container">
+                <div class="carousel-track" id="reviewsCarousel">
+                    <!-- Reviews will be populated dynamically -->
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn prev" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-header">
+                <h2>Why Choose TrustTrack?</h2>
+                <p>Discover the features that make TrustTrack the most trusted platform for public transport reviews in Bangladesh</p>
+            </div>
+            <div class="features-grid">                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Safety First</h3>
+                        <p>Report and track safety issues to ensure secure commuting for everyone. Our platform helps identify safe routes and reliable transport services.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Real Reviews</h3>
+                        <p>Authentic feedback from fellow commuters about hygiene, punctuality, and service quality. Make informed decisions based on real experiences.</p>
+                    </div>
+                </div>                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Emergency Support</h3>
+                        <p>Quick access to nearest police stations, hospitals and medical services when needed. Your safety is our top priority.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <!-- Login Modal -->
+    <div class="auth-modal" id="loginModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i>Welcome Back</h2>
+                <button class="close-modal" data-modal="loginModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="auth-submit">Sign In</button>
+                    <div class="auth-switch">
+                        <p>Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="auth-modal" id="signupModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i>Join TrustTrack</h2>
+                <button class="close-modal" data-modal="signupModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" name="confirmPassword" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="terms" required>
+                            <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-submit">Create Account</button>
+                    <div class="auth-switch">
+                        <p>Already have an account? <a href="#" id="switchToLogin">Sign in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bus"></i> TrustTrack</h3>
+                    <p>Making public transport safer and more reliable for Bangladesh</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="pages/reviews.html">Submit Review</a></li>
+                        <li><a href="pages/emergency.html">Emergency</a></li>
+                        <li><a href="pages/team.html">About Team</a></li>
+                        <li><a href="pages/feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> info@trusttrack.bd</p>
+                    <p><i class="fas fa-phone"></i> +880 1XXX-XXXXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TrustTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script src="scripts/env-config.js"></script>
+    <script src="scripts/firebase-config-compat.js"></script>
+    <script src="scripts/auth-compat.js"></script>
+    <script src="scripts/homepage-reviews.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
