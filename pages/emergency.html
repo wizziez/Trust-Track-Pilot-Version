@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Support - TrustTrack</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/emergency.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">            <div class="nav-brand">
+                <a href="../index.html">
+                    <h2><i class="fas fa-bus"></i> TrustTrack</h2>
+                </a>
+            </div>            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="emergency.html" class="active">Emergency</a>
+                <a href="team.html">Team</a>
+                <a href="#" id="dashboardLink" style="display: none;">Dashboard</a>
+                <a href="admin.html">Admin</a>
+            </div><div class="nav-actions">
+                <div class="auth-buttons">
+                    <button class="login-btn" id="loginBtn">Login</button>
+                    <button class="signup-btn" id="signupBtn">Sign Up</button>
+                </div>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>    <!-- Emergency Header -->
+    <section class="emergency-header">
+        <div class="container">
+            <div class="emergency-title">
+                <h1>Emergency Support</h1>
+                <p>AI-powered emergency assistance to find the nearest help when you need it most</p>
+            </div>
+        </div>
+    </section>    <!-- AI-Powered Emergency Chat -->
+    <section class="ai-chat-section">
+        <div class="container">
+            <div class="chat-header">
+                <h2><i class="fas fa-robot"></i> AI Emergency Chat Assistant</h2>
+                <p>Chat with our AI for personalized emergency assistance and guidance</p>
+                <div class="chat-status" id="chatStatus">
+                    <span class="status-indicator online"></span>
+                    <span>AI Assistant Online</span>
+                </div>
+            </div>
+            
+            <div class="ai-chat-container">
+                <!-- Chat Messages Area -->
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai-message welcome-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                <p>Hello! I'm your AI Emergency Assistant. I'm here to help you 24/7 with any emergency situation or safety concern.</p>
+                                <p>You can ask me about:</p>
+                                <ul>
+                                    <li>🚨 Finding emergency services near you</li>
+                                    <li>🏥 Medical assistance and hospitals</li>
+                                    <li>🚔 Police stations and safety concerns</li>
+                                    <li>🚒 Fire emergencies and safety tips</li>
+                                    <li>📱 Emergency procedures and guidance</li>
+                                    <li>🗺️ Directions and location assistance</li>
+                                </ul>
+                                <p><strong>How can I help you today?</strong></p>
+                            </div>
+                            <div class="message-time" id="welcomeTime"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Action Suggestions -->
+                <div class="quick-suggestions" id="quickSuggestions">
+                    <div class="suggestion-chips">
+                        <button class="suggestion-chip" data-query="I need help, where is the nearest police station?">
+                            <i class="fas fa-shield-alt"></i> Find Police Station
+                        </button>
+                        <button class="suggestion-chip" data-query="Medical emergency, need nearest hospital">
+                            <i class="fas fa-hospital"></i> Medical Emergency
+                        </button>
+                        <button class="suggestion-chip" data-query="Fire emergency, need help immediately">
+                            <i class="fas fa-fire-extinguisher"></i> Fire Emergency
+                        </button>
+                        <button class="suggestion-chip" data-query="I need an ambulance service">
+                            <i class="fas fa-ambulance"></i> Call Ambulance
+                        </button>
+                        <button class="suggestion-chip" data-query="I'm lost and need directions">
+                            <i class="fas fa-map-marker-alt"></i> Get Directions
+                        </button>
+                        <button class="suggestion-chip" data-query="Safety tips for traveling at night">
+                            <i class="fas fa-moon"></i> Safety Tips
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Chat Input Area -->
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="chatInput" placeholder="Type your emergency question or concern here..." autocomplete="off">
+                        <button class="send-btn" id="sendBtn" disabled>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="action-btn voice-btn" id="voiceBtn" title="Voice Message">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="action-btn location-btn" id="locationBtn" title="Share Location">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </button>
+                        <button class="action-btn emergency-btn" id="emergencyCallBtn" title="Emergency Call">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span>AI is typing...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Emergency Numbers -->
+    <section class="quick-numbers">
+        <div class="container">
+            <h2>Quick Emergency Numbers</h2>
+            <div class="emergency-grid">
+                <a href="tel:999" class="emergency-card">
+                    <div class="emergency-icon police">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="emergency-info">
+                        <h3>Police</h3>
+                        <span class="number">999</span>
+                    </div>
+                </a>
+                <a href="tel:199" class="emergency-card">
+                    <div class="emergency-icon medical">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <div class="emergency-info">
+                        <h3>Medical</h3>
+                        <span class="number">199</span>
+                    </div>
+                </a>
+                <a href="tel:9555555" class="emergency-card">
+                    <div class="emergency-icon fire">
+                        <i class="fas fa-fire-extinguisher"></i>
+                    </div>
+                    <div class="emergency-info">
+                        <h3>Fire Service</h3>
+                        <span class="number">9555555</span>
+                    </div>
+                </a>
+                <a href="tel:10921" class="emergency-card">
+                    <div class="emergency-icon women">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <div class="emergency-info">
+                        <h3>Women Helpline</h3>
+                        <span class="number">10921</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location and Map Section -->
+    <section class="location-section">
+        <div class="container">
+            <div class="location-header">
+                <h2>Find Nearby Help</h2>
+                <button id="getLocationBtn" class="location-btn">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Get My Location
+                </button>
+            </div>
+            
+            <div class="map-container">
+                <div id="map" class="map"></div>
+                <div class="map-controls">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-eye"></i> All
+                    </button>
+                    <button class="filter-btn" data-filter="police">
+                        <i class="fas fa-shield-alt"></i> Police
+                    </button>
+                    <button class="filter-btn" data-filter="hospital">
+                        <i class="fas fa-plus-circle"></i> Hospitals
+                    </button>
+                    <button class="filter-btn" data-filter="pharmacy">
+                        <i class="fas fa-pills"></i> Pharmacy
+                    </button>
+                </div>
+            </div>
+            
+            <div class="location-status" id="locationStatus">
+                <i class="fas fa-info-circle"></i>
+                Click "Get My Location" to find nearby emergency services
+            </div>
+        </div>
+    </section>
+
+    <!-- Nearby Services List -->
+    <section class="nearby-services">
+        <div class="container">
+            <h2>Nearby Emergency Services</h2>
+            <div class="services-list" id="servicesList">
+                <!-- Services will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Tips -->
+    <section class="emergency-tips">
+        <div class="container">
+            <h2>Emergency Safety Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Stay Connected</h3>
+                    <p>Keep your phone charged and share your location with trusted contacts when traveling</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Stay Alert</h3>
+                    <p>Be aware of your surroundings and trust your instincts if something feels wrong</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Travel in Groups</h3>
+                    <p>When possible, travel with others, especially during late hours or unfamiliar routes</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-map"></i>
+                    <h3>Know Your Route</h3>
+                    <p>Familiarize yourself with your route and identify safe places along the way</p>
+                </div>
+            </div>
+        </div>    </section>
+
+    <!-- Login Modal -->
+    <div class="auth-modal" id="loginModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i>Welcome Back</h2>
+                <button class="close-modal" data-modal="loginModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="auth-submit">Sign In</button>
+                    <div class="auth-switch">
+                        <p>Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="auth-modal" id="signupModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i>Join TrustTrack</h2>
+                <button class="close-modal" data-modal="signupModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" name="confirmPassword" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="terms" required>
+                            <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-submit">Create Account</button>
+                    <div class="auth-switch">
+                        <p>Already have an account? <a href="#" id="switchToLogin">Sign in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>    <script src="../scripts/main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../scripts/env-config.js"></script>
+    <script src="../scripts/firebase-config-compat.js"></script>
+    <script src="../scripts/auth-compat.js"></script>
+    <script src="../scripts/emergency-chat.js"></script>
+</body>
+</html>

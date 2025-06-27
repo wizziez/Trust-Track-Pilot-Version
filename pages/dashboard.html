@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TrustTrack</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h2><i class="fas fa-bus"></i> TrustTrack</h2>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="team.html">Team</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            <div class="nav-actions">
+                <div class="user-menu">
+                    <div class="user-info" id="userInfo">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar" id="userAvatar">
+                        <span id="userName">User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="./profile.html"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Welcome Header -->
+            <div class="dashboard-header">
+                <div class="welcome-section">
+                    <h1>Welcome back, <span id="welcomeUserName">User</span>!</h1>
+                    <p>Here's what's happening with your TrustTrack account</p>
+                </div>
+                <div class="quick-actions">
+                    <button class="action-btn primary" onclick="location.href='reviews.html'">
+                        <i class="fas fa-plus"></i> Write Review
+                    </button>
+                    <button class="action-btn secondary" onclick="location.href='emergency.html'">
+                        <i class="fas fa-exclamation-triangle"></i> Emergency
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Cards -->
+            <div class="dashboard-grid">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="userReviewsCount">0</h3>
+                            <p>Reviews Written</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="userHelpfulVotes">0</h3>
+                            <p>Helpful Votes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="safetyScore">95%</h3>
+                            <p>Safety Score</p>
+                        </div>
+                    </div>
+                </div>                <!-- Quick Navigation -->
+                <div class="quick-nav-section">
+                    <h2>Quick Navigation</h2>
+                    <div class="nav-cards">
+                        <a href="reviews.html" class="nav-card">
+                            <i class="fas fa-star"></i>
+                            <h3>Reviews</h3>
+                            <p>Read and write transport reviews</p>
+                        </a>
+                        <a href="emergency.html" class="nav-card">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Emergency</h3>
+                            <p>Safety features and emergency contacts</p>
+                        </a>
+                        <a href="team.html" class="nav-card">
+                            <i class="fas fa-users"></i>
+                            <h3>About Us</h3>
+                            <p>Meet the TrustTrack team</p>
+                        </a>
+                    </div>                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script src="../scripts/firebase-config-compat.js"></script>
+    <script src="../scripts/dashboard-compat.js"></script>
+</body>
+</html>

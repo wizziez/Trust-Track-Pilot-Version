@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - TrustTrack</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html">
+                    <h2><i class="fas fa-bus"></i> TrustTrack</h2>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="team.html">Team</a>
+                <a href="faq.html">FAQ</a>
+                <a href="#" id="dashboardLink" style="display: none;">Dashboard</a>
+                <a href="admin.html">Admin</a>
+            </div>            <div class="nav-actions">
+                <div class="user-menu">
+                    <div class="user-info" id="userInfo">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar" id="userAvatar">
+                        <span id="userName">User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="./dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Profile Header -->
+            <div class="dashboard-header">                <div class="welcome-section">
+                    <h1><i class="fas fa-user-circle"></i> Welcome, <span id="profileUserName">User</span>!</h1>
+                    <p>Manage your account settings and preferences</p>
+                </div>
+                <div class="quick-actions">                    <button class="action-btn primary" onclick="location.href='./dashboard.html'">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </button>
+                    <button class="action-btn secondary" onclick="location.href='reviews.html'">
+                        <i class="fas fa-star"></i> Write Review
+                    </button>
+                </div>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="dashboard-grid">
+                <!-- Profile Information -->
+                <div class="profile-section">
+                    <h2>Profile Information</h2>
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <img src="https://via.placeholder.com/100" alt="Profile Avatar" id="profileAvatar">
+                            <div class="avatar-upload">
+                                <i class="fas fa-camera"></i>
+                                <span>Change Photo</span>
+                            </div>
+                        </div>
+                        <div class="profile-info">
+                            <form id="profileForm" class="profile-form">
+                                <div class="form-group">
+                                    <label for="displayName">Display Name</label>
+                                    <input type="text" id="displayName" name="displayName" placeholder="Enter your display name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="location">Location</label>
+                                    <input type="text" id="location" name="location" placeholder="Enter your city">
+                                </div>
+                                <button type="submit" class="action-btn primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Stats -->
+                <div class="stats-section">
+                    <h2>Account Statistics</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalReviews">0</h3>
+                                <p>Total Reviews</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="memberSince">--</h3>
+                                <p>Member Since</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-thumbs-up"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="helpfulVotes">0</h3>
+                                <p>Helpful Votes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-section">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list" id="userRecentActivity">
+                        <div class="no-activity">
+                            <i class="fas fa-clock"></i>
+                            <p>No recent activity to display.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy Settings -->
+                <div class="settings-section">
+                    <h2>Privacy & Security</h2>
+                    <div class="settings-card">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Email Notifications</h4>
+                                <p>Receive email updates about your reviews and TrustTrack</p>
+                            </div>
+                            <label class="toggle">
+                                <input type="checkbox" id="emailNotifications" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Profile Visibility</h4>
+                                <p>Make your profile visible to other users</p>
+                            </div>
+                            <label class="toggle">
+                                <input type="checkbox" id="profileVisibility" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Review Privacy</h4>
+                                <p>Show your name on public reviews</p>
+                            </div>
+                            <label class="toggle">
+                                <input type="checkbox" id="reviewPrivacy" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="danger-section">
+                    <h2>Account Actions</h2>
+                    <div class="danger-card">
+                        <div class="danger-actions">
+                            <button class="danger-btn" id="changePasswordBtn">
+                                <i class="fas fa-key"></i> Change Password
+                            </button>
+                            <button class="danger-btn delete" id="deleteAccountBtn">
+                                <i class="fas fa-trash"></i> Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script src="../scripts/firebase-config-compat.js"></script>
+    <script src="../scripts/auth-compat.js"></script>
+    <script src="../scripts/profile.js"></script>
+</body>
+</html>

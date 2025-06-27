@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - TrustTrack</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html"><h2><i class="fas fa-bus"></i> TrustTrack</h2></a>
+            </div>            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="team.html">Team</a>
+                <a href="faq.html" class="active">FAQ</a>
+                <a href="#" id="dashboardLink" style="display: none;">Dashboard</a>
+                <a href="admin.html">Admin</a>
+            </div>
+            <div class="nav-actions">
+                <div class="auth-buttons">
+                    <button class="login-btn" id="loginBtn">Login</button>
+                    <button class="signup-btn" id="signupBtn">Join TrustTrack</button>
+                </div>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    <section class="faq-hero">
+        <div class="container">
+            <h1 class="faq-main-title"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h1>
+            <p class="faq-subtitle">Find answers to common questions about TrustTrack, reviews, safety, and more.</p>
+        </div>
+    </section>
+    <section class="faq-list-section">
+        <div class="container">
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">How do I submit a review?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">Go to the Reviews page and fill out the review form. No login is required to share your experience.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Is my feedback anonymous?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">Yes, you can submit reviews and feedback without creating an account. Your privacy is always respected.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How are ratings calculated?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">Ratings are based on user reviews and averaged across safety, hygiene, punctuality, and overcrowding.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What should I do in an emergency?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">Visit the Emergency page for quick access to police, hospitals, and urgent resources.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Who is behind TrustTrack?<i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-answer">TrustTrack is built by a passionate team dedicated to safer, more reliable public transport in Bangladesh. Meet us on the Team page!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bus"></i> TrustTrack</h3>
+                    <p>Making public transport safer and more reliable for Bangladesh</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="reviews.html">Submit Review</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                        <li><a href="team.html">About Team</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> info@trusttrack.bd</p>
+                    <p><i class="fas fa-phone"></i> +880 1XXX-XXXXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TrustTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../scripts/main.js"></script>    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../scripts/firebase-config-compat.js"></script>    <script src="../scripts/auth-compat.js"></script>
+    <script>
+    // Enhanced FAQ Accordion Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach((btn, index) => {
+            // Add accessibility attributes
+            btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-controls', `faq-answer-${index}`);
+            
+            const answer = btn.nextElementSibling;
+            answer.setAttribute('id', `faq-answer-${index}`);
+            answer.setAttribute('aria-labelledby', `faq-question-${index}`);
+            btn.setAttribute('id', `faq-question-${index}`);
+            
+            btn.addEventListener('click', function() {
+                const item = this.parentElement;
+                const isOpen = item.classList.contains('open');
+                
+                // Close all items
+                faqItems.forEach(faqItem => {
+                    faqItem.classList.remove('open');
+                    const question = faqItem.querySelector('.faq-question');
+                    question.setAttribute('aria-expanded', 'false');
+                });
+                
+                // Open clicked item if it wasn't already open
+                if (!isOpen) {
+                    item.classList.add('open');
+                    this.setAttribute('aria-expanded', 'true');
+                    
+                    // Smooth scroll to the opened item
+                    setTimeout(() => {
+                        item.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'nearest' 
+                        });
+                    }, 100);
+                }
+            });
+            
+            // Add keyboard navigation
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+        
+        // Add search functionality
+        const searchContainer = document.querySelector('.faq-list-section .container');
+        const searchHTML = `
+            <div class="faq-search-container">
+                <div class="faq-search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="faqSearch" placeholder="Search FAQ..." aria-label="Search frequently asked questions">
+                    <button type="button" id="clearSearch" style="display: none;" aria-label="Clear search">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        searchContainer.insertAdjacentHTML('afterbegin', searchHTML);
+        
+        const searchInput = document.getElementById('faqSearch');
+        const clearBtn = document.getElementById('clearSearch');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            clearBtn.style.display = searchTerm ? 'block' : 'none';
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('open');
+                }
+            });
+            
+            // Show "no results" message if needed
+            const visibleItems = Array.from(faqItems).filter(item => item.style.display !== 'none');
+            const noResultsMsg = document.querySelector('.no-results-message');
+            
+            if (visibleItems.length === 0 && searchTerm) {
+                if (!noResultsMsg) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results-message';
+                    noResults.innerHTML = `
+                        <i class="fas fa-search"></i>
+                        <p>No FAQ items match your search.</p>
+                        <small>Try using different keywords or browse all questions below.</small>
+                    `;
+                    searchContainer.appendChild(noResults);
+                }
+            } else if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+        });
+        
+        clearBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            searchInput.dispatchEvent(new Event('input'));
+            searchInput.focus();
+        });
+    });
+    </script>
+</body>
+</html>

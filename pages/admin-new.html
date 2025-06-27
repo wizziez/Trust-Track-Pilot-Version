@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TrustTrack</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/admin-new.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html">
+                    <h2><i class="fas fa-bus"></i> TrustTrack Admin</h2>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="team.html">Team</a>
+                <a href="#" id="dashboardLink" style="display: none;">Dashboard</a>
+                <a href="admin.html" class="active">Admin</a>
+            </div>
+            <div class="nav-actions">
+                <div class="auth-buttons">
+                    <button class="login-btn" id="loginBtn">Login</button>
+                    <button class="signup-btn" id="signupBtn">Join TrustTrack</button>
+                </div>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="admin-login" id="adminLogin">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="login-header">
+                        <div class="admin-logo">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <h2>Admin Dashboard</h2>
+                        <p>Secure access to TrustTrack administration</p>
+                    </div>
+                    
+                    <div class="admin-login-form">
+                        <div class="form-group">
+                            <label for="adminEmail">
+                                <i class="fas fa-envelope"></i>
+                                Email
+                            </label>
+                            <input type="email" id="adminEmail" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPassword">
+                                <i class="fas fa-lock"></i>
+                                Password
+                            </label>
+                            <input type="password" id="adminPassword" required placeholder="Enter your password">
+                        </div>
+                        
+                        <button type="button" id="adminLoginBtn" class="admin-login-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Access Dashboard</span>
+                        </button>
+                    </div>
+                    
+                    <div id="loginError" class="error-message" style="display: none;"></div>
+                    <div id="loginSuccess" class="success-message" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+                <div class="header-actions">
+                    <span>Welcome, <span id="adminName">Administrator</span></span>
+                    <button id="logoutBtn" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Reviews</h3>
+                        <div class="stat-number" id="totalReviews">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <div class="stat-number" id="totalUsers">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Feedback Messages</h3>
+                        <div class="stat-number" id="totalFeedback">0</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-tabs">
+                    <button class="tab-btn active" data-tab="reviews">Reviews</button>
+                    <button class="tab-btn" data-tab="users">Users</button>
+                    <button class="tab-btn" data-tab="feedback">Feedback</button>
+                    <button class="tab-btn" data-tab="contacts">Contacts</button>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="reviewsTab">
+                        <h2>Reviews Management</h2>
+                        <div id="reviewsTable" class="data-list">
+                            <p>Loading reviews...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="usersTab">
+                        <h2>Users Management</h2>
+                        <div id="usersList" class="data-list">
+                            <p>Loading users...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="feedbackTab">
+                        <h2>Feedback Management</h2>
+                        <div id="feedbackTable" class="data-list">
+                            <p>Loading feedback...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="contactsTab">
+                        <h2>Contact Messages</h2>
+                        <div id="contactsTable" class="data-list">
+                            <p>Loading contacts...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="auth-modal" id="loginModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i>Welcome Back</h2>
+                <button class="close-modal" data-modal="loginModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="auth-submit">Sign In</button>
+                    <div class="auth-switch">
+                        <p>Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="auth-modal" id="signupModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i>Join TrustTrack</h2>
+                <button class="close-modal" data-modal="signupModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" name="confirmPassword" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="terms" required>
+                            <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-submit">Create Account</button>
+                    <div class="auth-switch">
+                        <p>Already have an account? <a href="#" id="switchToLogin">Sign in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bus"></i> TrustTrack</h3>
+                    <p>Making public transport safer and more reliable for Bangladesh</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="reviews.html">Submit Review</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                        <li><a href="team.html">About Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> info@trusttrack.bd</p>
+                    <p><i class="fas fa-phone"></i> +880 1XXX-XXXXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TrustTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../scripts/main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../scripts/firebase-config-compat.js"></script>
+    <script src="../scripts/auth-compat.js"></script>
+    <script src="../scripts/admin-new.js"></script>
+</body>
+</html>

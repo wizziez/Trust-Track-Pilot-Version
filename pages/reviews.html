@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Review - TrustTrack</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/reviews.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">            <div class="nav-brand">
+                <a href="../index.html">
+                    <h2><i class="fas fa-bus"></i> TrustTrack</h2>
+                </a>
+            </div>            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="reviews.html" class="active">Reviews</a>
+                <a href="emergency.html">Emergency</a>
+                <a href="team.html">Team</a>
+                <a href="#" id="dashboardLink" style="display: none;">Dashboard</a>
+                <a href="admin.html">Admin</a>
+            </div>            <div class="nav-actions">
+                <div class="auth-buttons" id="authButtons">
+                    <button class="login-btn" id="loginBtn">Login</button>
+                    <button class="signup-btn" id="signupBtn">Sign Up</button>
+                </div>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Review Form Section -->
+    <section class="review-form-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>Submit Your Transport Review</h1>
+                <p>Help fellow commuters by sharing your transport experience</p>
+            </div>            <div class="review-form-container">
+                <!-- Login Prompt (shown when not authenticated) -->
+                <div id="loginPrompt" class="login-prompt" style="display: none;">
+                    <div class="prompt-card">
+                        <i class="fas fa-lock fa-3x"></i>
+                        <h2>Login Required</h2>
+                        <p>You need to be logged in to submit a review. This helps us maintain the quality and authenticity of reviews.</p>
+                        <div class="prompt-actions">
+                            <button class="btn-primary" onclick="window.location.href='./login.html'">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </button>
+                            <button class="btn-secondary" onclick="window.location.href='./signup.html'">
+                                <i class="fas fa-user-plus"></i> Sign Up
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="reviewForm" class="review-form">
+                    <!-- Transport Route Selection -->
+                    <div class="form-group">
+                        <label for="transportRoute">Transport Route/Type</label>
+                        <select id="transportRoute" name="transportRoute" required>
+                            <option value="">Select Route</option>
+                            <option value="dhaka-chittagong">Dhaka - Chittagong Highway</option>
+                            <option value="mirpur-dhanmondi">Mirpur - Dhanmondi Route</option>
+                            <option value="uttara-motijheel">Uttara - Motijheel Express</option>
+                            <option value="gazipur-dhaka">Gazipur - Dhaka Route</option>
+                            <option value="sylhet-dhaka">Sylhet - Dhaka Highway</option>
+                            <option value="other">Other (Please specify in comments)</option>
+                        </select>
+                    </div>
+
+                    <!-- Rating Parameters -->
+                    <div class="rating-section">
+                        <h3>Rate Your Experience</h3>
+                        
+                        <!-- Safety Rating -->
+                        <div class="rating-group">
+                            <label>Safety</label>
+                            <div class="star-rating" data-rating="safety">
+                                <i class="fas fa-star" data-value="1"></i>
+                                <i class="fas fa-star" data-value="2"></i>
+                                <i class="fas fa-star" data-value="3"></i>
+                                <i class="fas fa-star" data-value="4"></i>
+                                <i class="fas fa-star" data-value="5"></i>
+                            </div>
+                            <span class="rating-text">Not rated</span>
+                        </div>
+
+                        <!-- Hygiene Rating -->
+                        <div class="rating-group">
+                            <label>Hygiene</label>
+                            <div class="star-rating" data-rating="hygiene">
+                                <i class="fas fa-star" data-value="1"></i>
+                                <i class="fas fa-star" data-value="2"></i>
+                                <i class="fas fa-star" data-value="3"></i>
+                                <i class="fas fa-star" data-value="4"></i>
+                                <i class="fas fa-star" data-value="5"></i>
+                            </div>
+                            <span class="rating-text">Not rated</span>
+                        </div>
+
+                        <!-- Punctuality Rating -->
+                        <div class="rating-group">
+                            <label>Punctuality</label>
+                            <div class="star-rating" data-rating="punctuality">
+                                <i class="fas fa-star" data-value="1"></i>
+                                <i class="fas fa-star" data-value="2"></i>
+                                <i class="fas fa-star" data-value="3"></i>
+                                <i class="fas fa-star" data-value="4"></i>
+                                <i class="fas fa-star" data-value="5"></i>
+                            </div>
+                            <span class="rating-text">Not rated</span>
+                        </div>
+
+                        <!-- Overcrowding Rating -->
+                        <div class="rating-group">
+                            <label>Overcrowding (5 = No Crowding, 1 = Very Crowded)</label>
+                            <div class="star-rating" data-rating="overcrowding">
+                                <i class="fas fa-star" data-value="1"></i>
+                                <i class="fas fa-star" data-value="2"></i>
+                                <i class="fas fa-star" data-value="3"></i>
+                                <i class="fas fa-star" data-value="4"></i>
+                                <i class="fas fa-star" data-value="5"></i>
+                            </div>
+                            <span class="rating-text">Not rated</span>
+                        </div>
+                    </div>
+
+                    <!-- Textual Feedback -->
+                    <div class="form-group">
+                        <label for="feedback">Your Experience (Optional)</label>
+                        <textarea id="feedback" name="feedback" rows="4" placeholder="Share details about your journey, any incidents, or suggestions for improvement..."></textarea>
+                    </div>
+
+                    <!-- Photo Upload -->
+                    <div class="form-group">
+                        <label for="photo">Upload Photo (Optional)</label>
+                        <div class="file-upload">
+                            <input type="file" id="photo" name="photo" accept="image/*">
+                            <label for="photo" class="file-upload-label">
+                                <i class="fas fa-camera"></i>
+                                <span>Choose Photo</span>
+                            </label>
+                            <div class="file-preview" id="filePreview"></div>
+                        </div>
+                    </div>                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Reviews Section -->
+    <section class="recent-reviews">
+        <div class="container">
+            <h2>Recent Reviews</h2>
+            <div class="reviews-grid" id="recentReviews">
+                <!-- Reviews will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bus"></i> TrustTrack</h3>
+                    <p>Making public transport safer and more reliable for Bangladesh</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="reviews.html">Submit Review</a></li>
+                        <li><a href="emergency.html">Emergency</a></li>
+                        <li><a href="team.html">About Team</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> info@trusttrack.bd</p>
+                    <p><i class="fas fa-phone"></i> +880 1XXX-XXXXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TrustTrack. All rights reserved.</p>
+            </div>
+        </div>    </footer>
+
+    <!-- Login Modal -->
+    <div class="auth-modal" id="loginModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i>Welcome Back</h2>
+                <button class="close-modal" data-modal="loginModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="auth-submit">Sign In</button>
+                    <div class="auth-switch">
+                        <p>Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="auth-modal" id="signupModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i>Join TrustTrack</h2>
+                <button class="close-modal" data-modal="signupModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" name="confirmPassword" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="terms" required>
+                            <span>I agree to the <a href="#">Terms & Conditions</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-submit">Create Account</button>
+                    <div class="auth-switch">
+                        <p>Already have an account? <a href="#" id="switchToLogin">Sign in</a></p>
+                    </div>
+                </form>            </div>
+        </div>        <!-- Recent Reviews Section -->
+        <div class="recent-reviews-section">
+            <div class="container">
+                <div class="reviews-header">
+                    <h2><i class="fas fa-star"></i> Recent Reviews</h2>                    <div class="reviews-options">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="showUsernames" checked>
+                            <span class="slider"></span>
+                            <span class="toggle-label">Show usernames</span>
+                        </label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="showDeleteButtons" checked>
+                            <span class="slider"></span>
+                            <span class="toggle-label">Show delete options</span>
+                        </label>
+                    </div>
+                </div>
+                <div id="recentReviews" class="reviews-grid">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading reviews...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    <script src="../scripts/main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../scripts/firebase-config-compat.js"></script>
+    <script src="../scripts/auth-compat.js"></script>
+    <script src="../scripts/reviews.js"></script>
+</body>
+</html>
