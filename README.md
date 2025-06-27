@@ -10,7 +10,7 @@ Admin Dashboard – View registered users, delete inappropriate reviews, monitor
 
 Real-Time Analytics – Get insights into user sentiment and common issues
 
-AI-Powered Review Assistant – Categorizes feedback for better decision-making (planned)
+AI-Powered Review Assistant – Categorizes feedback for better decision-making 
 
 Data Privacy First – End-to-end encrypted minimal data collection
 
