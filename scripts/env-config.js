@@ -52,16 +52,16 @@ class EnvironmentConfig {
         if (this.isProduction) {
             // In production, these would be injected during build or fetched from a secure endpoint
             return {
-                endpoint: process.env.AZURE_OPENAI_ENDPOINT || 'https://ai-raiyanbinsarwar0112ai312258162978.openai.azure.com/',
-                apiKey: process.env.AZURE_OPENAI_API_KEY || '', // This should be handled securely
-                apiVersion: '2024-12-01-preview'
+                ,
+                 // This should be handled securely
+                
             };
         } else {
             // Development configuration
             return {
-                endpoint: 'https://ai-raiyanbinsarwar0112ai312258162978.openai.azure.com/',
-                apiKey: '2wuCk4AZtNAflvsGfbHjThuF7PKySOnOtW7DzxmgFDLtO07liLBJJQQJ99BCACHYHv6XJ3w3AAAAACOGaBwr',
-                apiVersion: '2024-12-01-preview'
+                endpoint: ,
+                apiKey: '',
+                apiVersion: ''
             };
         }
     }
