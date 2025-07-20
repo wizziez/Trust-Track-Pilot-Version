@@ -9,10 +9,10 @@ const AZURE_OPENAI_CONFIG = (() => {
     const envConfig = window.EnvironmentConfig ? window.EnvironmentConfig.getAzureOpenAIConfig() : null;
     
     return {
-        endpoint: envConfig?.endpoint || "https://ai-raiyanbinsarwar0112ai312258162978.openai.azure.com/",
-        apiVersion: envConfig?.apiVersion || "2024-12-01-preview",
+        endpoint: envConfig?.endpoint || ,
+        apiVersion: envConfig?.apiVersion || "",
         deploymentName: "gpt-4o",
-        apiKey: envConfig?.apiKey || "2wuCk4AZtNAflvsGfbHjThuF7PKySOnOtW7DzxmgFDLtO07liLBJJQQJ99BCACHYHv6XJ3w3AAAAACOGaBwr"
+        apiKey: envConfig?.apiKey || ""
     };
 })();
 
